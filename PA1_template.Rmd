@@ -4,7 +4,7 @@ output:
   html_document:
     fig_height: 7
     fig_width: 9
-    keep_md: yes
+    keep_md: yes    
 ---
 
 
@@ -16,7 +16,7 @@ First unzip the activity file and then load the data in R. To unzip the file mak
 * read the __activity.csv__ file into the data variable
 * display the head of the __data__ variable
 
-```{r setoptions, echo=TRUE, results="hide"}
+```{r setoptions, echo=TRUE, results="hide", warning=FALSE, message=FALSE}
 # Load the utils library
 library(utils)
 
@@ -38,7 +38,7 @@ head(data)
 * Load into __dataValid__ variable values from __data__ variable with __non NA__ in the __step__ column
 * Display the head of __dataValid__ variable
 
-```{r}
+```{r echo=TRUE, warning=FALSE, message=FALSE}
 # Get only valid data
 dataValid <- data[!is.na(data$steps),]
 
@@ -51,7 +51,7 @@ head(dataValid)
 * Load the __ggplot2__ package
 * Plot an histogram with the total number of steps taken each day
 
-```{r}
+```{r echo=TRUE, warning=FALSE, message=FALSE}
 # 1. Calculate the total number of steps taken per day aggregating the data by date. Then get only date and steps columns
 stepsByDay <- aggregate(. ~ date, data=dataValid[,1:2], FUN=sum)
 
@@ -72,7 +72,7 @@ q + xlab("Date") + ylab("Steps") + ggtitle("Total number of steps each day")
 * Calculate the __median__ value of the total number of steps taken per day and save the result into the __medianSteps__ variable
 * Report the __mean__ and the __median__ values
 
-```{r}
+```{r echo=TRUE, warning=FALSE, message=FALSE}
 # 3. Calculate and report the mean and median of the total number of steps taken per day
 meanSteps <- mean(stepsByDay$steps)
 medianSteps <- median(stepsByDay$steps)
@@ -88,7 +88,7 @@ print(paste('Median of the total number of steps taken per day:', medianSteps, s
 * Plot the result saved into the __stepsAverageByInterval__ variable
 * Report the 5-minute interval which contains the __maximum__ number of steps
 
-```{r}
+```{r echo=TRUE, warning=FALSE, message=FALSE}
 # 1. Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 stepsAverageByInterval <- aggregate(. ~ interval, data=data[,c(1,3)], FUN=mean)
 
@@ -99,7 +99,7 @@ axis(side = 1, at = stepsAverageByInterval$interval)
 
 * Report the maximum number of steps
 
-```{r}
+```{r echo=TRUE, warning=FALSE, message=FALSE}
 # 2. Print which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps
 print(stepsAverageByInterval[which.max(stepsAverageByInterval$steps),])
 ```
@@ -117,7 +117,7 @@ The __835th__ interval is the one during which the maximum number of steps are p
 * Calculate the __median__ value of the total number of steps taken per day and save the result into the __medianStepsCorrected__ variable
 * Report the __mean__ and the __median__ values
 
-```{r}
+```{r echo=TRUE, warning=FALSE, message=FALSE}
 # 1. Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
 print(paste('Number of rows containing NAs:', nrow(data[is.na(data$steps),]), sep=' '))
 
@@ -157,7 +157,7 @@ Not a substantial impact, the histogram doesn't change much.
 * Load the __lattice__ package
 * Draw a panel plot containing a time series plot of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis)
 
-```{r}
+```{r echo=TRUE, warning=FALSE, message=FALSE}
 # Load the dplyr package
 library(dplyr)
 

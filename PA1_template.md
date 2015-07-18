@@ -4,7 +4,7 @@ output:
   html_document:
     fig_height: 7
     fig_width: 9
-    keep_md: yes
+    keep_md: yes    
 ---
 
 
@@ -73,13 +73,7 @@ stepsByDay$date <- as.Date(stepsByDay$date)
 
 # Load the ggplot2 package
 library(ggplot2)
-```
 
-```
-## Warning: package 'ggplot2' was built under R version 3.1.3
-```
-
-```r
 # 2. Draw an histogram with the total number of steps taken each day
 q <- ggplot(stepsByDay, aes(x=date, y=steps), type="l") 
 q <- q + geom_bar(stat="identity") + scale_x_date(breaks="day") 
@@ -225,26 +219,7 @@ Not a substantial impact, the histogram doesn't change much.
 ```r
 # Load the dplyr package
 library(dplyr)
-```
 
-```
-## Warning: package 'dplyr' was built under R version 3.1.3
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-## 
-## The following object is masked from 'package:stats':
-## 
-##     filter
-## 
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 ## Set the locale based on the operating system (to get x axis in english)
 if (.Platform$OS.type == "unix") {
     Sys.setlocale("LC_TIME", "en_US.UTF-8")
@@ -266,13 +241,7 @@ dataByDayType <- aggregate(steps ~ interval+dayType, data=dataNACorrected, FUN=m
 
 ## Load the lattice library
 library(lattice)
-```
 
-```
-## Warning: package 'lattice' was built under R version 3.1.3
-```
-
-```r
 ## 2. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis).
 xyplot(steps ~ interval | dayType, dataByDayType, layout=c(1,2), type="l", color="blue", xlab="Interval", ylab="Number of steps", main="Average steps taken - Averaged across Weekends or Weekdays")
 ```

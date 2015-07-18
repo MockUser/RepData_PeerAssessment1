@@ -265,12 +265,8 @@ stepsByDay$date &lt;- as.Date(stepsByDay$date)
 
 # Load the ggplot2 package
 library(ggplot2)
-</code></pre>
 
-<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.1.3
-</code></pre>
-
-<pre><code class="r"># 2. Draw an histogram with the total number of steps taken each day
+# 2. Draw an histogram with the total number of steps taken each day
 q &lt;- ggplot(stepsByDay, aes(x=date, y=steps), type=&quot;l&quot;) 
 q &lt;- q + geom_bar(stat=&quot;identity&quot;) + scale_x_date(breaks=&quot;day&quot;) 
 q &lt;- q + theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))
@@ -405,24 +401,8 @@ Not a substantial impact, the histogram doesn&#39;t change much.</p>
 
 <pre><code class="r"># Load the dplyr package
 library(dplyr)
-</code></pre>
 
-<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.1.3
-</code></pre>
-
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;
-## 
-## The following object is masked from &#39;package:stats&#39;:
-## 
-##     filter
-## 
-## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union
-</code></pre>
-
-<pre><code class="r">## Set the locale based on the operating system (to get x axis in english)
+## Set the locale based on the operating system (to get x axis in english)
 if (.Platform$OS.type == &quot;unix&quot;) {
     Sys.setlocale(&quot;LC_TIME&quot;, &quot;en_US.UTF-8&quot;)
 } else {
@@ -441,12 +421,8 @@ dataByDayType &lt;- aggregate(steps ~ interval+dayType, data=dataNACorrected, FU
 
 ## Load the lattice library
 library(lattice)
-</code></pre>
 
-<pre><code>## Warning: package &#39;lattice&#39; was built under R version 3.1.3
-</code></pre>
-
-<pre><code class="r">## 2. Make a panel plot containing a time series plot (i.e. type = &quot;l&quot;) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis).
+## 2. Make a panel plot containing a time series plot (i.e. type = &quot;l&quot;) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis).
 xyplot(steps ~ interval | dayType, dataByDayType, layout=c(1,2), type=&quot;l&quot;, color=&quot;blue&quot;, xlab=&quot;Interval&quot;, ylab=&quot;Number of steps&quot;, main=&quot;Average steps taken - Averaged across Weekends or Weekdays&quot;)
 </code></pre>
 
